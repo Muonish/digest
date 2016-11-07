@@ -1,6 +1,8 @@
-(ns digest.core)
+(ns digest.core
+  (:require [noir.server :as server])
+  (:use digest.routes))
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(defn -main "Main method"
+  [] 
+  (server/start 8080))
+
