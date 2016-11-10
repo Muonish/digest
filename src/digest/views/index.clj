@@ -1,6 +1,7 @@
 (ns digest.views.index
   (:require [net.cgrand.enlive-html :as enlive]
-            [noir.session :as session]))
+            [noir.session :as session]
+            [digest.dal.posts-provider :as postp]))
 
 (enlive/deftemplate index-template "digest/views/index.html"
   []

@@ -1,6 +1,16 @@
 (ns digest.db
-  (:require [monger.core :as mg]))
+  (:require [monger.core :as mcore]))
 
-(def conn (mg/connect))
+(let []
+  (into-array-list [1]))
+  
 
-(def db (mg/get-db conn "monger-test"))
+;(defn connect [] 
+;  (mcore/connect))
+
+;(defn get-db [conn])
+  ;(mcore/use-db conn "digest_db"))
+
+;(defn disconnect [])
+  ;(mcore/disconnect conn))
+
