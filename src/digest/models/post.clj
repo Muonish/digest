@@ -1,5 +1,17 @@
 (ns digest.models.post)
 
-;(defrecord post [id  name  country  city  description  creationDate  duration  cost  tips  attachments comments likes])
-
+(defrecord post-record
+  [id  
+   name  
+   author
+   country  
+   city  
+   description  
+   creationDate  
+   duration  
+   cost  
+   tips  
+   attachments 
+   comments 
+   likes])
 

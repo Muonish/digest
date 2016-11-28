@@ -1,8 +1,15 @@
 (ns digest.core
-  (:require [noir.server :as server])
-  (:use digest.routes))
+  (:use compojure.core)
+  (:require [digest.db :as db]
+            [compojure.route :as route]
+            [compojure.handler :as handler]
+            [ring.middleware.json :as middleware]
+            [ring.util.response :as response]))
 
-(defn -main "Main method"
-  [] 
-  (server/start 8080))
+(defroutes app-routes
+           (GET "/" [] (response/redirect "/home"))
+           (route/not-found "Page not found")
+           (route/resources "/"))
 
+(def engine
+  (-> (handler/site app-routes) (middleware/wrap-json-body {:keywords? true})))

@@ -1,14 +1,14 @@
 (ns digest.dal.posts-provider
-  (:require [digest.db :as db]))
-            ;[monger.collection :as mc]))
+   (:require [clojure.java.jdbc :as jdbc]
+             [digest.models.post :as post]
+             [digest.db :as db]))
 
+;(get-all-items
+;    [this]
+;    (into [] (jdbc/query db/db-map
+;                         ["SELECT id, name, description"]
+;                         :row-fn #(post/->post-record
+;                                   (:id %1)
+;                                   (:name %1)
+;                                   (:description %1)]))
 
-;(deftype posts-provider []
-  
-;  common-protocol/common-provider-protocol
-  
-;(defn get-items [] 
-;  (let [conn (db/connect)
-;        db (db/get-db conn)
-;    (mc/find-maps "posts")))
-  

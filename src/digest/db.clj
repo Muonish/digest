@@ -1,16 +1,8 @@
-(ns digest.db
-  (:require [monger.core :as mcore]))
+(ns digest.db)
 
-(let []
-  (into-array-list [1]))
-  
-
-;(defn connect [] 
-;  (mcore/connect))
-
-;(defn get-db [conn])
-  ;(mcore/use-db conn "digest_db"))
-
-;(defn disconnect [])
-  ;(mcore/disconnect conn))
+(def db-map {:classname "com.mysql.jdbc.Driver"
+             :subprotocol "mysql"
+             :subname "//127.0.0.1:3306/digest"
+             :user "root"
+             :password "root"})
 
