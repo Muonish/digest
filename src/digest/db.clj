@@ -4,5 +4,5 @@
              :subprotocol "mysql"
              :subname "//127.0.0.1:3306/digest"
              :user "root"
-             :password "root"})
+             :password "123321"})
 

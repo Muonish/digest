@@ -11,7 +11,6 @@
    duration  
    cost  
    tips  
-   attachments 
    comments 
    likes])
 
