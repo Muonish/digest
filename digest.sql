@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 29, 2016 at 09:09 PM
+-- Generation Time: Nov 30, 2016 at 10:35 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.25
 
@@ -30,14 +30,16 @@ CREATE TABLE IF NOT EXISTS `city` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `about` varchar(4000) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `city`
 --
 
 INSERT INTO `city` (`id`, `name`, `about`) VALUES
-(1, 'Tokyo', '');
+(1, 'Tokyo', ''),
+(2, 'London', ''),
+(3, 'Moscow', '');
 
 -- --------------------------------------------------------
 
@@ -70,14 +72,16 @@ CREATE TABLE IF NOT EXISTS `country` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `about` varchar(4000) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `country`
 --
 
 INSERT INTO `country` (`id`, `name`, `about`) VALUES
-(1, 'Japan', '');
+(1, 'Japan', ''),
+(2, 'Great Britain', ''),
+(3, 'Russia', '');
 
 -- --------------------------------------------------------
 
@@ -108,14 +112,16 @@ CREATE TABLE IF NOT EXISTS `post` (
   `author_id` int(11) NOT NULL,
   `country_id` int(11) NOT NULL,
   `city_id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `post`
 --
 
 INSERT INTO `post` (`id`, `name`, `description`, `creation_date`, `duration`, `cost`, `tips`, `author_id`, `country_id`, `city_id`) VALUES
-(1, 'Magic Japan', 'The best!', '2016-11-29', 5, '300', '1.Yes\r\n2.Yes', 1, 1, 1);
+(1, 'Magic Japan', 'The best!', '2016-11-29', 5, '300', '1.Yes\r\n2.Yes', 1, 1, 1),
+(6, 'sdfd', 'bfs', '2016-12-01', 3, '44', 'sr', 1, 1, 1),
+(7, 'Russssiiiia trip', 'serge', '2016-12-10', 4, '4343', '2sdfgere', 2, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -127,16 +133,17 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `first_name` varchar(255) NOT NULL,
-  `last_name` varchar(255) NOT NULL
+  `last_name` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `email`, `first_name`, `last_name`) VALUES
-(1, 'admin@cc.com', 'Admin', 'Admin'),
-(2, 'susan@cc.com', 'Susan', 'Brown');
+INSERT INTO `user` (`id`, `email`, `first_name`, `last_name`, `password`) VALUES
+(1, 'admin', 'Admin', 'Admin', '123'),
+(2, 'susan@cc.com', 'Susan', 'Brown', '');
 
 --
 -- Indexes for dumped tables
@@ -175,13 +182,9 @@ ALTER TABLE `likes`
 --
 ALTER TABLE `post`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `author_id_2` (`author_id`),
-  ADD UNIQUE KEY `country_id` (`country_id`),
-  ADD UNIQUE KEY `city_id` (`city_id`),
   ADD KEY `author_id` (`author_id`),
-  ADD KEY `author_id_3` (`author_id`),
-  ADD KEY `city_id_2` (`city_id`),
-  ADD KEY `country_id_2` (`country_id`);
+  ADD KEY `city_id` (`city_id`) USING BTREE,
+  ADD KEY `country_id` (`country_id`) USING BTREE;
 
 --
 -- Indexes for table `user`
@@ -197,7 +200,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `city`
 --
 ALTER TABLE `city`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `comment`
 --
@@ -207,7 +210,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `country`
 --
 ALTER TABLE `country`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `likes`
 --
@@ -217,7 +220,7 @@ ALTER TABLE `likes`
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `user`
 --
