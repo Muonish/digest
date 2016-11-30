@@ -1,7 +1,8 @@
 (ns digest.views.view
   (:use hiccup.page
         hiccup.element)
-  (:require [digest.views.renderer :as renderer]))
+  (:require [digest.views.renderer :as renderer]
+            [digest.service.posts-service :as post]))
 
 (defn render-home-page
   []
@@ -19,14 +20,6 @@
   []
   (renderer/render "signup.html"))
 
-(defn render-taskdesk-page
-  [tasks groups]
-  (renderer/render "taskdesk.html" {:tasks tasks :groups groups}))
-
-(defn render-edit-task
-  [task users groups stats]
-  (renderer/render "taskedit.html" {:task task :users users :groups groups :stats stats}))
-
-(defn render-edit-group
-  [group]
-  (renderer/render "groupedit.html" {:group group}))
+(defn render-main-page
+  []
+  (renderer/render "main.html" {:posts (post/get-all)}))

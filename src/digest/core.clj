@@ -2,21 +2,20 @@
   (:use compojure.core)
   (:require [digest.db :as db] 
             [digest.views.view :as view]
+            [digest.service.users-service :as user]
+            [digest.service.posts-service :as post]
             [compojure.route :as route]
             [compojure.handler :as handler]
             [ring.middleware.json :as middleware]
-            [ring.util.response :as response]))
+            [ring.util.response :refer [redirect]]))
+
 
 (defroutes app-routes
-           (GET "/" [] (response/redirect "/home")) 
+           (GET "/" [] (redirect "/home")) 
            (GET "/home" [] (view/render-home-page)) 
            (GET "/auth" [] (view/render-signin-page))
-         ;  (POST "/auth" request (post-auth request))
-           (GET "/signup" [] (view/render-signup-page
-          ; (POST "/signup" request (add-user request))
-          ; (GET "/user/:login" [login] (show-user-page login))
-           ;(GET "/user/logoff" [] (def logged false)
-                                  (response/redirect "/home")))
+           (GET "/main" [] (view/render-main-page))
+           (POST "/auth" request (user/sign-in request #(redirect "/error") #(redirect "/main")))
            (route/resources "/")
            (route/not-found "Page not found"))
 
