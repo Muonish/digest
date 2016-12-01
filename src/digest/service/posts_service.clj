@@ -5,5 +5,8 @@
 
 (defn get-all
   []
-  (prn (.get-all-items postdal))
   (.get-all-items postdal))
+
+(defn get-post
+  [params]
+  (.get-item postdal params))

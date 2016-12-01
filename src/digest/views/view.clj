@@ -12,6 +12,11 @@
   []
   (renderer/render "auth.html"))
 
+(defn render-post-page
+  [{params :params}]
+  (renderer/render "post.html" {:post (post/get-post params)}))
+
+
 (defn render-user-page
   [user]
   (renderer/render "user.html" {:user user}))

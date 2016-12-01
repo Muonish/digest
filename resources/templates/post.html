@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="post row">
+    <div class="col-md-10">
+        <h1>{{post.name}}</h1>
+        <span class="date">{{post.creation}}</span>
+        <p>{{post.description}}</p>
+    </div>
+</div>
+<div class="container" style="width:540px;">
+    {% if session.user_id %}
+    <form style="margin-bottom:10px;" action="/comments/create" method="POST">
+        <div class="form-group">
+            <textarea class="form-control" name="content" id="content" rows="5"></textarea>
+        </div>
+        <input type="hidden" name="post_id" value="{{post.id}}">
+        <button class="btn btn-success">comment</button>
+    </form>
+    {% endif %}
+    <div class="comments row">
+        {% for comment in comments %}
+        <div class="comment row">
+            <div class="col-md-10">
+                <h3>{{comment.description}}</h3>
+                <span class="date">{{comment.creation}}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

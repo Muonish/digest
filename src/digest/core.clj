@@ -11,13 +11,14 @@
 
 
 (defroutes app-routes
-           (GET "/" [] (redirect "/home")) 
-           (GET "/home" [] (view/render-home-page)) 
-           (GET "/auth" [] (view/render-signin-page))
-           (GET "/main" [] (view/render-main-page))
-           (POST "/auth" request (user/sign-in request #(redirect "/error") #(redirect "/main")))
-           (route/resources "/")
-           (route/not-found "Page not found"))
+  (GET "/" [] (redirect "/home"))
+  (GET "/home" [] (view/render-home-page))
+  (GET "/auth" [] (view/render-signin-page))
+  (GET "/post/:id" request (view/render-post-page request))
+  (GET "/main" [] (view/render-main-page))
+  (POST "/auth" request (user/sign-in request #(redirect "/error") #(redirect "/main")))
+  (route/resources "/")
+  (route/not-found "Page not found"))
 
 (def engine
   (-> (handler/site app-routes) (middleware/wrap-json-body {:keywords? true})))

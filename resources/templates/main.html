@@ -7,14 +7,14 @@
     {% for item in posts %}
         <div class="post row">
             <div class="col-md-10">
-                <a href="/posts/{{item.id}}">{{item.name}}</a>
+                <a href="/post/{{item.id}}">{{item.name}}</a>
                 <span class="date">({{item.creation}})</span>
                 <p>{{item.description}}</p>
             </div>
             <div class="col-md-2">
                 {% if session.admin %}
-                  <a class="btn btn-success manage-button" href="/posts/{{item.id}}/edit">edit</a>
-                  <a class="btn btn-danger manage-button" href="/posts/{{item.id}}/delete">delete</a>
+                  <a class="btn btn-success manage-button" href="/post/{{item.id}}/edit">edit</a>
+                  <a class="btn btn-danger manage-button" href="/post/{{item.id}}/delete">delete</a>
                 {% endif %}
             </div>
         </div>
