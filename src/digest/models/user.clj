@@ -5,4 +5,5 @@
    firstname
    lastname
    email
-   password])
+   password
+   is_admin])

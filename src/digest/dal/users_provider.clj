@@ -1,6 +1,6 @@
 (ns digest.dal.users-provider
    (:require [clojure.java.jdbc :as jdbc]
-             [clojure.java.jdbc.sql :as sql]
+             [java-jdbc.sql :as sql]
              [digest.models.user :as user]
              [digest.dal.protocols.common-protocol :as common]
              [digest.db :as db]))

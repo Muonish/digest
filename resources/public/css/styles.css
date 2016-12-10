@@ -1,4 +1,34 @@
+body{
+  background: rgb(243, 241, 237) ;
+  color: #494949;
+}
+
+a.disabled {
+    pointer-events: none; 
+    cursor: default;  
+} 
+
 .header {
     height: 50px;
     background-color: lightgray;
+}
+
+.Absolute-Center {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+
+.Absolute-Center.is-Responsive {
+  width: 30%; 
+  height: 30%;
+  text-align: center;
+}
+
+.Project-Navbar {
+  background: white;
+}
+
+.navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover {
+  color: black;
 }

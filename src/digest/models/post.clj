@@ -7,7 +7,7 @@
    country  
    city  
    description  
-   creation  
+   creation_date
    duration  
    cost  
    tips  

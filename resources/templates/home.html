@@ -2,10 +2,19 @@
 {% block content %}
 
 <div class="row">
-    <div class="col-md-4">
-        <a class="btn btn-primary" href="/auth">Sign in</a>
-        <a class="btn btn-primary" href="/signup">Sign up</a>
-    </div>
-</div>
+        <div class="col-md-3">
+        <h3 class="text-center">LOGIN</h3>
+        <a class="btn btn-default btn-block" href="/auth">Login </a>
+        </div>
+        
+        <div class="col-md-4">
+        <h2 class="text-center">OR</h2>
+        </div>
+            
+        <div class="col-md-3">
+          <h3 class="text-center">SIGN UP</h3>
+          <a class="btn btn-default btn-block disabled" href="/signup" disabled>Sign up</a>
+        </div>
+</div>  
 
 {% endblock %}

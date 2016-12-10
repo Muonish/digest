@@ -8,23 +8,42 @@
   []
   (renderer/render "home.html" {:docs "document"}))
 
-(defn render-signin-page
-  []
-  (renderer/render "auth.html"))
-
-(defn render-post-page
-  [{params :params}]
-  (renderer/render "post.html" {:post (post/get-post params)}))
-
+(defn render-main-page
+  [{session :session}]
+  (renderer/render "main.html" {:posts (post/get-all) :session session}))
 
 (defn render-user-page
   [user]
   (renderer/render "user.html" {:user user}))
 
+; auth
+
+(defn render-signin-page
+  [params]
+  (renderer/render "auth.html" params))
+
 (defn render-signup-page
   []
   (renderer/render "signup.html"))
 
-(defn render-main-page
-  []
-  (renderer/render "main.html" {:posts (post/get-all)}))
+; post
+
+(defn render-post-page
+  [{{id :id} :params}]
+  (renderer/render "post.html" {:post (post/get-post id)}))
+
+(defn render-post-add-page
+  [{session :session}]
+  (renderer/render "post-add.html" {:session session}))
+
+(defn render-post-edit-page
+  [{{id :id} :params session :session}]
+  (renderer/render "post-edit.html" {:post (post/get-post id) :session session}))
+
+
+
+
+
+
+
+

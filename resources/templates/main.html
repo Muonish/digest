@@ -2,13 +2,13 @@
 {% block content %}
     <span class="error-message">{{not-auth}}</span>
     {% if session.admin %}
-        <a href="/posts/add" style="margin: 10px;" class="btn btn-primary">add post</a>
+        <a href="/post/add" style="margin: 10px;" class="btn btn-primary">add post</a>
     {% endif %}
     {% for item in posts %}
         <div class="post row">
             <div class="col-md-10">
-                <a href="/post/{{item.id}}">{{item.name}}</a>
-                <span class="date">({{item.creation}})</span>
+                <h3><a href="/post/{{item.id}}">{{item.name}}</a></h3>
+                <span class="date">{{item.creation_date}}</span>
                 <p>{{item.description}}</p>
             </div>
             <div class="col-md-2">
