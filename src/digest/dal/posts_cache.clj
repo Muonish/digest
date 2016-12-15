@@ -7,17 +7,17 @@
 
 (def *timer* (agent nil))
 
-(defn start-timer [ms a f]
-  (letfn [(tfn [m] (future (do (Thread/sleep ms) (reset! a f) (send *timer* tfn))))]
+(defn start-timer [ms a]
+  (letfn [(tfn [] (future (do (Thread/sleep ms) (reset! a {}) (send *timer* tfn))))]
          (send *timer* tfn)))
 
 (defn enable-timer []
-  (start-timer 60000 cache {})) ; every 60 sec cache reset
+  (start-timer 60000 cache)) ; every 60 sec cache reset
 
 ; Cache
 
 (defn new-stub [post]
-  (let [id ((.create-item postdal post) :id)]
+  (let [id ((first (.create-item postdal post)) :generated_key)]
     (swap! cache assoc id (assoc post :id id))))
 
 (defn get-stub [id]

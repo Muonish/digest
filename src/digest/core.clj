@@ -4,6 +4,7 @@
             [digest.views.view :as view]
             [digest.service.users-service :as user]
             [digest.service.posts-service :as post]
+            [digest.service.dsl-service :as dsl]
             [compojure.route :as route]
             [compojure.handler :as handler]
             [ring.util.response :refer [redirect]]))
@@ -12,6 +13,7 @@
 
 (defn get-req [route foo]
   (GET route request
+       (prn request)
        (if (get-in request [:session :admin])
            (foo request)
            (redirect "/error"))))
@@ -27,9 +29,18 @@
 ; routes
 
 (defroutes app-routes
-  (GET "/" [] (redirect "/home"))
-  (GET "/home" request  (view/render-home-page))
+  (GET "/" [] (redirect "/main"))
   (GET "/main" request  (view/render-main-page request))
+
+
+  ; dsl
+
+  (get-req "/admin" #(view/render-admin-page %))
+  (POST "/admin" request
+    (let [res (dsl/gcc (:query (:params request)))]
+      (prn (:params request))
+      (prn res)
+      (view/render-admin-page (merge request {:error-message res}))))
 
   ; auth
 
@@ -40,17 +51,26 @@
       #(view/render-signin-page {:error-message "Unable to find user with this email and password"})
       #(redirect "/main")))
 
-  ; post operations
+  ; signup
 
-  (GET "/post/:id" request (view/render-post-page request))
+  (GET "/signup" request  (view/render-signup-page {}))
+  (POST "/signup" request
+    (user/sign-up
+      request
+      #(view/render-signup-page {:error-message "Unable to create user with this email and password"})
+      #(redirect "/main")))
+
+  ; post operations
 
   (get-req "/post/add" #(view/render-post-add-page %))
   (post-req "/post/add" #(post/add-post %))
 
   (get-req "/post/:id/edit" #(view/render-post-edit-page %))
-  (post-req "/post/:id/save" #(post/edit-post %))
+  (post-req "/post/:id/edit" #(post/edit-post %))
 
   (get-req "/post/:id/delete" (fn [req] (post/delete-post req) (redirect "/main")))
+
+  (GET "/post/:id" request (view/render-post-page request))
 
   ; resources
 

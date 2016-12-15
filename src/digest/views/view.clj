@@ -4,10 +4,6 @@
   (:require [digest.views.renderer :as renderer]
             [digest.service.posts-service :as post]))
 
-(defn render-home-page
-  []
-  (renderer/render "home.html" {:docs "document"}))
-
 (defn render-main-page
   [{session :session}]
   (renderer/render "main.html" {:posts (post/get-all) :session session}))
@@ -23,14 +19,14 @@
   (renderer/render "auth.html" params))
 
 (defn render-signup-page
-  []
-  (renderer/render "signup.html"))
+  [params]
+  (renderer/render "signup.html" params))
 
 ; post
 
 (defn render-post-page
-  [{{id :id} :params}]
-  (renderer/render "post.html" {:post (post/get-post id)}))
+  [{{id :id} :params session :session}]
+  (renderer/render "post.html" {:post (post/get-post id) :session session}))
 
 (defn render-post-add-page
   [{session :session}]
@@ -38,8 +34,14 @@
 
 (defn render-post-edit-page
   [{{id :id} :params session :session}]
+  (prn (post/get-post id))
   (renderer/render "post-edit.html" {:post (post/get-post id) :session session}))
 
+; admin
+
+(defn render-admin-page
+  [params]
+  (renderer/render "admin.html" params))
 
 
 

@@ -14,8 +14,12 @@
       <div class="container">
         <div class="navbar-brand">Digest</div>
           <ul class="nav navbar-nav">
-            <li><a href="/home">HOME</a></li>
-            <li><a href="/auth">LOGIN</a></li>
+              <li><a href="/main">MAIN</a></li>
+              <li><a href="/auth">LOGIN</a></li>
+              <li><a href="/signup">SIGN UP</a></li>
+              {% if session.admin %}
+              <li><a href="/admin">ADMIN</a></li>
+              {% endif %}
           </ul>
       </div>
   </div>

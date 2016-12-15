@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row">
+    <div class="Absolute-Center is-Responsive">
+
+        <div class="col-sm-100 col-md-80 col-md-offset-1">
+            <h3>Edit post</h3>
+            <form action="/post/{{post.id}}/edit" method="post">
+                <div class="form-group input-group">
+                    <span class="input-group-addon"></span>
+                    <input class="form-control" type="text" id="name" name='name' value="{{post.name}}"/>
+                </div>
+                <div class="form-group input-group">
+                    <span class="input-group-addon"></span>
+                    <textarea class="form-control" id="description" name="description" rows="10">{{post.description}}</textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-def btn-block">Done</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

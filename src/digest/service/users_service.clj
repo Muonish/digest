@@ -11,8 +11,9 @@
         (-> (success) (assoc :session (assoc session :user_id id :email email :admin false))))
       (error))))
 
-(defn sign-up [{{:keys [email password] :as user} :params} success error]
-  (if-not (.get-item userdal {:email email})
+(defn sign-up [{{:keys [email password] :as user} :params} error success]
+  (prn (.get-item userdal {:email email}))
+  (if-not (:id (.get-item userdal {:email email}))
     (do
       (.create-item userdal (merge user {:is_admin false}))
       (success))

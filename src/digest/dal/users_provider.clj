@@ -24,11 +24,12 @@
   
   (create-item 
     [this params]
+    (prn params)
     (jdbc/insert! db/db-map :user params))
   
   (update-item 
     [this params]
-    (jdbc/update! db/db-map :user params (sql/where {:id (params :id)})))
+    (jdbc/update! db/db-map :user params (sql/where {:email (params :email)})))
     
   
   (delete-item 

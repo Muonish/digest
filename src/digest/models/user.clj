@@ -2,8 +2,7 @@
 
 (defrecord user-record
   [id  
-   firstname
-   lastname
+   name
    email
    password
    is_admin])

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form class="form" style="width: 500px;" method="post" action="/admin">
+    <h4>Enter query</h4>
+    <label for="query" class="sr-only">Request</label>
+    <input type="text" id="query" name="query" class="form-control" placeholder="Query" required autofocus>
+    <br>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Run</button>
+    <br>
+    <label for="result" class="sr-only">Result</label>
+    <br>
+    <br><br>
+    <span class="error-message">{{error-message}}</span>
+</form>
+{% endblock %}
