@@ -14,10 +14,11 @@
 (defn sign-up [{{:keys [email password] :as user} :params} error success]
   (prn (.get-item userdal {:email email}))
   (if-not (:id (.get-item userdal {:email email}))
-    (do
-      (.create-item userdal (merge user {:is_admin false}))
-      (success))
-    (error)))
+    (if (and (> (count password) 3) (< (count password) 20))
+      (do
+        (.create-item userdal (merge user {:is_admin false}))
+        (success))
+      (error))))
 
 
 (defn logout [{session :session} success]

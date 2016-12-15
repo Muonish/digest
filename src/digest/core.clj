@@ -13,7 +13,6 @@
 
 (defn get-req [route foo]
   (GET route request
-       (prn request)
        (if (get-in request [:session :admin])
            (foo request)
            (redirect "/error"))))
@@ -31,6 +30,7 @@
 (defroutes app-routes
   (GET "/" [] (redirect "/main"))
   (GET "/main" request  (view/render-main-page request))
+  (GET "/logout" request (fn [req] (user/logout req #(redirect "/main"))))
 
 
   ; dsl
@@ -38,8 +38,8 @@
   (get-req "/admin" #(view/render-admin-page %))
   (POST "/admin" request
     (let [res (dsl/gcc (:query (:params request)))]
-      (prn (:params request))
-      (prn res)
+      ;(prn (:params request))
+      ;(prn res)
       (view/render-admin-page (merge request {:error-message res}))))
 
   ; auth

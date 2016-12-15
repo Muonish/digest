@@ -21,7 +21,7 @@
 
 (defn get-post
   [id]
-  (prn @cache/cache)
+  ;(prn @cache/cache)
   (cache/get-stub id))
 
 (defn add-post

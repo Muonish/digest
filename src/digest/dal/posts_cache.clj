@@ -12,7 +12,8 @@
          (send *timer* tfn)))
 
 (defn enable-timer []
-  (start-timer 60000 cache)) ; every 60 sec cache reset
+  (start-timer 60000 cache))
+   ; every 60 sec cache reset
 
 ; Cache
 

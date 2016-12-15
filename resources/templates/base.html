@@ -20,6 +20,9 @@
               {% if session.admin %}
               <li><a href="/admin">ADMIN</a></li>
               {% endif %}
+              {% if session.user_id %}
+              <li><a href="/logout">logout</a></li>
+              {% endif %}
           </ul>
       </div>
   </div>
