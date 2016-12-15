@@ -5,7 +5,6 @@
 
 (defn show [klogin login]  ; show :user "123"
   (do
-    (prn "show ololo")
     (if (= :user klogin)
         (let [u (.get-item userdal {:email login})]
           (if u
@@ -41,6 +40,6 @@
 (defn gcc "GNU Clojure Compiler"
   [string]
   (try
-    (binding [*ns* (:ns (meta #'show))] (do (eval (read-string (str "(" string ")")))))
+    (binding [*ns* (:ns (meta #'gcc))] (eval (read-string (str "(" string ")"))))
     ;(eval (read-string (add-brackets string)))
     (catch Exception e (str "Unknown command"))))
